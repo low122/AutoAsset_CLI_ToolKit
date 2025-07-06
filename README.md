@@ -1,77 +1,103 @@
 # AutoAsset CLI ToolKit
 
-A comprehensive CLI toolkit for managing and tracking digital assets, featuring an email subscription tracker that uses IMAP and OpenAI's GPT-4 for intelligent analysis.
+A comprehensive CLI toolkit for managing and tracking digital assets, featuring a professional email subscription scanner that uses IMAP and Claude AI for intelligent analysis.
 
-## Email Subscription Tracker
+## Email Subscription Scanner
+
+A professional CLI tool that scans your email for active subscription services using AI analysis.
 
 ### Features
 
-- Connects to Gmail using IMAP securely
-- Fetches and analyzes recent emails
-- Identifies subscription-related information automatically
-- Displays subscription details in a formatted table
-- Handles duplicate emails and prioritizes important senders
-- Provides detailed error messages and status updates
+- **Gmail Integration**: Connects to Gmail via IMAP to fetch emails
+- **AI-Powered Analysis**: Uses Claude AI to identify subscription services
+- **Smart Filtering**: Focuses on important emails from the past 4 months
+- **Clean Export**: Saves results to CSV for further analysis
+- **Professional Interface**: Clean, progress-tracked CLI experience
+- **Cost Estimation**: Calculates estimated monthly subscription costs
 
 ### Prerequisites
 
-1. Python 3.9 or higher
-2. Gmail account with IMAP enabled
-3. Gmail App Password (for authentication)
-4. OpenAI API key
+- Python 3.8+
+- Gmail account with App Password enabled  
+- Claude API key
+- Internet connection
 
 ### Setup
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+#### 1. Install Dependencies
 
-2. Configure environment variables in `.env`:
-   ```env
-   # Email Configuration
-   IMAP_SERVER=imap.gmail.com
-   EMAIL_USER=your.email@gmail.com
-   EMAIL_PASSWORD=your-app-specific-password  # Gmail App Password
+```bash
+pip install -r requirements.txt
+```
 
-   # OpenAI Configuration
-   OPENAI_API_KEY=your-openai-api-key
-   ```
+#### 2. Configuration
 
-#### Getting Gmail App Password
+Create a `.env` file in the project root:
 
-1. Go to your Google Account settings
-2. Enable 2-Step Verification if not already enabled
-3. Go to Security → App Passwords
-4. Generate a new App Password for 'Mail'
-5. Use this 16-character password in your `.env` file
+```env
+# Gmail Configuration
+IMAP_SERVER=imap.gmail.com
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
 
-#### Getting OpenAI API Key
+# Claude AI Configuration
+CLAUDE_API_KEY=your-claude-api-key
+```
 
-1. Go to [OpenAI's website](https://platform.openai.com)
-2. Sign up or log in
-3. Go to API section
-4. Generate a new API key
-5. Copy the key to your `.env` file
+#### 3. Gmail App Password
+
+For Gmail accounts:
+1. Enable 2-factor authentication in your Google Account
+2. Go to Security → App Passwords
+3. Generate an App Password for this tool
+4. Use the App Password (not your regular password) in EMAIL_PASSWORD
+
+#### 4. Claude API Key
+
+1. Sign up at https://console.anthropic.com/
+2. Create an API key
+3. Add it to your .env file
 
 ### Usage
 
-Run the subscription tracker:
+Run the scanner:
+
 ```bash
 python subtrack.py
 ```
 
-The script will:
+The tool will:
 1. Connect to your Gmail account
-2. Fetch recent emails
-3. Analyze them for subscription information
-4. Display results in a formatted table
+2. Fetch relevant emails from the past 4 months
+3. Analyze emails with AI to identify subscriptions
+4. Display results in a clean table
+5. Export data to `subscriptions.csv`
 
-### Error Messages
+### Output
 
-- ✗ Missing environment variables: Check your `.env` file
-- ✗ IMAP error: Check your email/password and internet connection
-- ✗ API error: Verify your OpenAI API key and quota
+The scanner provides:
+- **Service Name**: The subscription service
+- **Amount**: Monthly/yearly cost
+- **Next Payment**: When the next payment is due
+- **Billing Cycle**: Monthly, yearly, etc.
+- **Confidence**: AI confidence level (80%+)
+- **Total Cost**: Estimated monthly subscription cost
+
+### Data Export
+
+Results are automatically saved to `subscriptions.csv` with detailed information for further analysis.
+
+### Security
+
+- Your email credentials are only used locally
+- No data is stored or transmitted except to Claude AI for analysis
+- Email content is processed in small batches for privacy
+
+### Troubleshooting
+
+- **Connection Failed**: Check your email credentials and app password
+- **No Subscriptions Found**: Ensure you have subscription emails in your inbox
+- **Configuration Error**: Verify all environment variables are set correctly
 
 ## Contributing
 
