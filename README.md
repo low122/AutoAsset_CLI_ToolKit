@@ -102,7 +102,3 @@ Results are automatically saved to `subscriptions.csv` with detailed information
 ## Contributing
 
 Feel free to submit issues and enhancement requests!
-
-## License
-
-MIT License
